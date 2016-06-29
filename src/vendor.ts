@@ -7,3 +7,5 @@ import '@angular/http';
 import '@angular/router-deprecated';
 // RxJS
 import 'rxjs';
+
+require('!!style!css!bootstrap/dist/css/bootstrap.min.css');
