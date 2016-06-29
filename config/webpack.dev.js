@@ -8,6 +8,7 @@ const HOST_NAME = 'localhost';
 
 module.exports = webpackMerge(commonConfig, {
     devtool: 'source-map',
+    debug: true,
 
     output: {
         path: helpers.root('dist'),
@@ -17,12 +18,20 @@ module.exports = webpackMerge(commonConfig, {
     },
 
     plugins: [
-        new ExtractTextPlugin('[name].css')
+        new ExtractTextPlugin('[name].[hash].css')
     ],
     devServer: {
         // historyApiFallback: true,
         stats: 'minimal',
         port: SERVER_PORT,
-        outputPath: 'dist'
+        outputPath: helpers.root('dist')
+    },
+    node: {
+        global: 'window',
+        crypto: 'empty',
+        process: true,
+        module: false,
+        clearImmediate: false,
+        setImmediate: false
     }
 });

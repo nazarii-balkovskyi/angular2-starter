@@ -36,13 +36,7 @@ module.exports = {
             },
             {
                 test: /\.css$/,
-                exclude: helpers.root('src', 'app'),
-                loader: ExtractTextPlugin.extract('style', 'css?sourceMap')
-            },
-            {
-                test: /\.css$/,
-                include: helpers.root('src', 'app'),
-                loader: 'css'
+                loaders: ['to-string-loader', 'css-loader']
             }
         ]
     },
@@ -51,6 +45,7 @@ module.exports = {
         new webpack.optimize.CommonsChunkPlugin({
             name: ['app', 'vendor', 'polyfills']
         }),
+
 
         new HtmlWebpackPlugin({
             template: 'src/index.html'
