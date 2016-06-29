@@ -30,7 +30,7 @@ All configurations can be found in `config` directory.
 
 ##Project structure
 ```
-angular2-webpack-starter/
+angular2-starter/
  ├──config/                    * configuration
  |   ├──helpers.js             * helper functions
  |   ├──spec-bundle.js         * angular 2 testing environment
