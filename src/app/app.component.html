@@ -1,32 +1,40 @@
-<div class="container">
+<div class="jumbotron">
+    <h1>Seminar demos</h1>
+    <p>This is a set of demos and guides that illustrates basics of angular2</p>
+</div>
+
+<div class="container-fluid">
     <div class="row">
-        <div class="col-sm-3">
+        <div class="col-sm-3 col-md-2">
             <div class="sidebar-nav">
-                <div class="navbar navbar-default" role="navigation">
+                <nav class="navbar navbar-default" role="navigation" >
                     <div class="navbar-header">
-                        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".sidebar-navbar-collapse">
-                            <span class="sr-only">Toggle navigation</span>
-                            <span class="icon-bar"></span>
-                            <span class="icon-bar"></span>
-                            <span class="icon-bar"></span>
-                        </button>
-                        <span class="visible-xs navbar-brand">Sidebar menu</span>
+                        <div class="navbar-brand">Demo categories</div>
                     </div>
-                    <div class="navbar-collapse collapse sidebar-navbar-collapse">
+
+                    <div class="collapse navbar-collapse">
                         <ul class="nav navbar-nav">
-                            <li>
-                                <a [routerLink]="['/service-demo']">Demo of components</a>
+                            <li [routerLinkActive]="['active']">
+                                <a [routerLink]="['components-demo']">Components</a>
                             </li>
-                            <li class="active"><a [routerLink]="['']">Demo of bindings</a></li>
-                            <li><a [routerLink]="['']">Menu Item 3</a></li>
-                            <li><a [routerLink]="['']">Menu Item 4</a></li>
-                            <li><a [routerLink]="['']">Reviews <span class="badge">1,118</span></a></li>
+                            <li [routerLinkActive]="['active']">
+                                <a [routerLink]="['bindings-demo']">Bindings</a>
+                            </li>
+                            <li [routerLinkActive]="['active']">
+                                <a [routerLink]="['service-demo']">Services</a>
+                            </li>
+                            <li [routerLinkActive]="['active']">
+                                <a [routerLink]="['pipes-demo']">Pipes</a>
+                            </li>
+                            <li>
+                                <a [routerLink]="['']">Reviews</a>
+                            </li>
                         </ul>
                     </div><!--/.nav-collapse -->
-                </div>
+                </nav>
             </div>
         </div>
-        <div class="col-sm-9">
+        <div class="col-sm-9 col-md-10">
             <router-outlet></router-outlet>
         </div>
     </div>

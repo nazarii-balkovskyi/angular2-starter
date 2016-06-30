@@ -1,0 +1,63 @@
+<h3>Pipes demo</h3>
+<div class="row">
+    <div class="alert alert-info" role="alert">
+        <span>
+            <p>This pipe definition reveals several key points:</p>
+            <ul>
+                <li><p>A pipe is a class decorated with pipe metadata.</p>
+                </li>
+                <li><p>The pipe class implements the <code>PipeTransform</code> interface's <code>transform</code> method that
+                accepts an input value followed by optional parameters and returns the transformed value.</p>
+                </li>
+                <li><p>There will be one additional argument to the <code>transform</code> method for each parameter passed to the pipe.
+                Our pipe has one such parameter: the <code>exponent</code>.</p>
+                </li>
+                <li><p>We tell Angular that this is a pipe by applying the
+                <code>@Pipe</code> decorator which we import from the core Angular library.</p>
+                </li>
+                <li><p>The <code>@Pipe</code> decorator allows us to define the
+                 pipe name that we'll use within template expressions. It must be a valid JavaScript identifier.
+                 Our pipe's name is <code>pow</code>.</p>
+                </li>
+            </ul>
+        </span>
+    </div>
+    <h3>Code example</h3>
+    <div style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #008800; font-weight: bold">import</span> { Pipe, PipeTransform } from <span style="background-color: #fff0f0">&#39;@angular/core&#39;</span>;
+
+    <span style="color: #FF0000; background-color: #f5f5f5">@</span>Pipe({name<span style="color: #333333">:</span> <span style="background-color: #fff0f0">&#39;pow&#39;</span>})
+    <span style="color: #008800; font-weight: bold">export</span> <span style="color: #008800; font-weight: bold">class</span> PowPipe <span style="color: #008800; font-weight: bold">implements</span> PipeTransform {
+        transform(value: <span style="color: #333399; font-weight: bold">number</span>, exponent: <span style="color: #333399; font-weight: bold">string</span>)<span style="color: #333333">:</span> <span style="color: #333399; font-weight: bold">number</span> {
+            <span style="color: #008800; font-weight: bold">let</span> exp <span style="color: #333333">=</span> <span style="color: #007020">parseFloat</span>(exponent);
+            <span style="color: #008800; font-weight: bold">return</span> <span style="color: #007020">Math</span>.pow(value, <span style="color: #007020">isNaN</span>(exp) <span style="color: #333333">?</span> 1 : <span style="color: #333399; font-weight: bold">exp</span>);
+        }
+    }
+    </pre></div>
+
+    <h3>Check out the result</h3>
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h2 class="panel-title">Power example</h2>
+        </div>
+        <div class="panel-body">
+            <div class="form-horizontal">
+                <div class="form-group">
+                    <label class="control-label col-sm-2" for="power">Power number:</label>
+                    <div class="col-sm-10">
+                        <input type="number" class="form-control" id="power" [(ngModel)]="power">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="control-label col-sm-2" for="factor">Factor number:</label>
+                    <div class="col-sm-10">
+                        <input type="number" class="form-control" id="factor" [(ngModel)]="factor">
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <div class="panel-footer">
+            <h3>Result: {{power | pow: factor}}</h3>
+        </div>
+    </div>
+</div>

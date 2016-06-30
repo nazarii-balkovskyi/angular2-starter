@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import {Component, ViewEncapsulation} from '@angular/core';
 import {ROUTER_DIRECTIVES, Router} from '@angular/router'
 import { PowPipe } from './pipes/pow';
 
@@ -7,10 +7,11 @@ import { PowPipe } from './pipes/pow';
     template: require('./app.component.html'),
     styles: [ require('./app.component.css') ],
     pipes: [PowPipe],
-    directives: [ROUTER_DIRECTIVES]
+    directives: [ROUTER_DIRECTIVES],
+    encapsulation: ViewEncapsulation.Emulated
 })
 export class AppComponent {
     constructor(private router: Router) {
-        console.log(router);
+        console.log(this.router);
     }
 }
