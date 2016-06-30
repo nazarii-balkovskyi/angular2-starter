@@ -7,7 +7,6 @@ import {PowPipe} from '../../pipes/pow';
     pipes: [PowPipe]
 })
 export class PipesDemoComponent {
-    power: number;
-    factor: number;
-    
+    power: number = 1;
+    factor: number = 0;
 }

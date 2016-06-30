@@ -9,7 +9,7 @@
             <div class="sidebar-nav">
                 <nav class="navbar navbar-default" role="navigation" >
                     <div class="navbar-header">
-                        <div class="navbar-brand">Demo categories</div>
+                        <div class="navbar-brand"><strong>Demo categories</strong></div>
                     </div>
 
                     <div class="collapse navbar-collapse">
@@ -21,13 +21,16 @@
                                 <a [routerLink]="['bindings-demo']">Bindings</a>
                             </li>
                             <li [routerLinkActive]="['active']">
+                                <a [routerLink]="['directives-demo']">Directives</a>
+                            </li>
+                            <li [routerLinkActive]="['active']">
                                 <a [routerLink]="['service-demo']">Services</a>
                             </li>
                             <li [routerLinkActive]="['active']">
                                 <a [routerLink]="['pipes-demo']">Pipes</a>
                             </li>
-                            <li>
-                                <a [routerLink]="['']">Reviews</a>
+                            <li [routerLinkActive]="['active']">
+                                <a [routerLink]="['live']">Live codding section</a>
                             </li>
                         </ul>
                     </div><!--/.nav-collapse -->

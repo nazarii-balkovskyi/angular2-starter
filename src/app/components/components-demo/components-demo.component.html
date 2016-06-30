@@ -1,5 +1,5 @@
 <div class="row">
-    <h3>Components demo</h3>
+    <h2><strong>Components demo</strong></h2>
 
     <div class="alert alert-info">
         <p>Each Angular component requires a single @Component annotation. The @Component annotation specifies when a component is instantiated, and which properties and hostListeners it binds to.</p>
@@ -11,5 +11,47 @@
         </ul>
     </div>
 
+    <div class="page-header"><h2>Input and output properties</h2></div>
+    <div class="alert alert-info">
+        Here we have a voters example.
+    </div>
+    <h3>Code example (Vote component):</h3>
+    <div style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #FF0000; background-color: #F5F5F5">@</span>Component({
+    selector<span style="color: #333333">:</span> <span style="background-color: #fff0f0">&#39;vote&#39;</span>,
+    template: <span style="color: #333399; font-weight: bold">require</span>(<span style="background-color: #fff0f0">&#39;./vote.component.html&#39;</span>)
+})
+<span style="color: #008800; font-weight: bold">export</span> <span style="color: #008800; font-weight: bold">class</span> VoteComponent {
+    <span style="color: #008800; font-weight: bold">private</span> _voterName: <span style="color: #333399; font-weight: bold">string</span>;
+    <span style="color: #FF0000; background-color: #F5F5F5">@</span>Output() voted: <span style="color: #333399; font-weight: bold">EventEmitter</span><span style="color: #333333">&lt;</span><span style="color: #008800; font-weight: bold">boolean</span><span style="color: #333333">&gt;</span> <span style="color: #333333">=</span> <span style="color: #008800; font-weight: bold">new</span> EventEmitter<span style="color: #333333">&lt;</span><span style="color: #008800; font-weight: bold">boolean</span><span style="color: #333333">&gt;</span>();
+    <span style="color: #008800; font-weight: bold">private</span> voteResult: <span style="color: #333399; font-weight: bold">boolean</span>;
+    <span style="color: #008800; font-weight: bold">private</span> done: <span style="color: #333399; font-weight: bold">boolean</span> <span style="color: #333333">=</span> <span style="color: #008800; font-weight: bold">false</span>;
 
+    <span style="color: #FF0000; background-color: #F5F5F5">@</span>Input()
+    set voterName(value: <span style="color: #333399; font-weight: bold">string</span>) {
+        <span style="color: #008800; font-weight: bold">this</span>._voterName <span style="color: #333333">=</span> (value <span style="color: #333333">&amp;&amp;</span> value.trim()) <span style="color: #333333">||</span> <span style="background-color: #fff0f0">&#39;&lt;no name set&gt;&#39;</span>;
+    }
+
+    vote(voted: <span style="color: #333399; font-weight: bold">boolean</span>) {
+        <span style="color: #008800; font-weight: bold">this</span>.voted.emit(voted);
+        <span style="color: #008800; font-weight: bold">this</span>.voteResult <span style="color: #333333">=</span> voted;
+        <span style="color: #008800; font-weight: bold">this</span>.done <span style="color: #333333">=</span> <span style="color: #008800; font-weight: bold">true</span>;
+    }
+}
+</pre></div>
+
+    <h3>Template (use of vote component): </h3>
+    <div style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #007700">&lt;h3&gt;</span>{{question}}:<span style="color: #007700">&lt;/h3&gt;</span>
+<span style="color: #007700">&lt;strong&gt;</span>Agree:<span style="color: #007700">&lt;/strong&gt;</span> {{agreed}} <span style="color: #007700">&lt;strong&gt;</span>Disagree:<span style="color: #007700">&lt;/strong&gt;</span> {{disagreed}}
+<span style="color: #007700">&lt;h4&gt;</span>Voters<span style="color: #007700">&lt;/h4&gt;</span>
+<span style="color: #007700">&lt;div&gt;</span>
+	<span style="color: #007700">&lt;vote</span> <span style="color: #FF0000; background-color: #F5F5F5">*</span><span style="color: #0000CC">ngFor=</span><span style="background-color: #fff0f0">&quot;let voterName of voters&quot;</span> <span style="color: #FF0000; background-color: #F5F5F5">[</span><span style="color: #0000CC">voterName</span><span style="color: #FF0000; background-color: #F5F5F5">]=&quot;</span><span style="color: #0000CC">voterName</span><span style="color: #FF0000; background-color: #F5F5F5">&quot;</span> <span style="color: #FF0000; background-color: #F5F5F5">(</span><span style="color: #0000CC">voted</span><span style="color: #FF0000; background-color: #F5F5F5">)=&quot;</span><span style="color: #0000CC">onVote</span><span style="color: #FF0000; background-color: #F5F5F5">($</span><span style="color: #0000CC">event</span><span style="color: #FF0000; background-color: #F5F5F5">)&quot;</span><span style="color: #007700">&gt;&lt;/vote&gt;</span>
+<span style="color: #007700">&lt;/div&gt;</span>
+</pre></div>
+
+    <h3>{{question}}:</h3>
+    <strong>Agree:</strong> {{agreed}} <strong>Disagree:</strong> {{disagreed}}
+    <h4>Voters</h4>
+    <div>
+        <vote *ngFor="let voterName of voters" [voterName]="voterName" (voted)="onVote($event)"></vote>
+    </div>
 </div>

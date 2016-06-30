@@ -1,5 +1,5 @@
-<h3>Pipes demo</h3>
 <div class="row">
+    <h2><strong>Pipes demo</strong></h2>
     <div class="alert alert-info" role="alert">
         <span>
             <p>This pipe definition reveals several key points:</p>
@@ -25,19 +25,44 @@
     <h3>Code example</h3>
     <div style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #008800; font-weight: bold">import</span> { Pipe, PipeTransform } from <span style="background-color: #fff0f0">&#39;@angular/core&#39;</span>;
 
-    <span style="color: #FF0000; background-color: #f5f5f5">@</span>Pipe({name<span style="color: #333333">:</span> <span style="background-color: #fff0f0">&#39;pow&#39;</span>})
-    <span style="color: #008800; font-weight: bold">export</span> <span style="color: #008800; font-weight: bold">class</span> PowPipe <span style="color: #008800; font-weight: bold">implements</span> PipeTransform {
-        transform(value: <span style="color: #333399; font-weight: bold">number</span>, exponent: <span style="color: #333399; font-weight: bold">string</span>)<span style="color: #333333">:</span> <span style="color: #333399; font-weight: bold">number</span> {
-            <span style="color: #008800; font-weight: bold">let</span> exp <span style="color: #333333">=</span> <span style="color: #007020">parseFloat</span>(exponent);
-            <span style="color: #008800; font-weight: bold">return</span> <span style="color: #007020">Math</span>.pow(value, <span style="color: #007020">isNaN</span>(exp) <span style="color: #333333">?</span> 1 : <span style="color: #333399; font-weight: bold">exp</span>);
-        }
-    }
-    </pre></div>
+<span style="color: #FF0000; background-color: #F5F5F5">@</span>Pipe({name<span style="color: #333333">:</span> <span style="background-color: #fff0f0">&#39;pow&#39;</span>})
+<span style="color: #008800; font-weight: bold">export</span> <span style="color: #008800; font-weight: bold">class</span> PowPipe <span style="color: #008800; font-weight: bold">implements</span> PipeTransform {
+	transform(value: <span style="color: #333399; font-weight: bold">number</span>, exponent: <span style="color: #333399; font-weight: bold">string</span>)<span style="color: #333333">:</span> <span style="color: #333399; font-weight: bold">number</span> {
+		<span style="color: #008800; font-weight: bold">let</span> exp <span style="color: #333333">=</span> <span style="color: #007020">parseFloat</span>(exponent);
+		<span style="color: #008800; font-weight: bold">return</span> <span style="color: #007020">Math</span>.pow(value, <span style="color: #007020">isNaN</span>(exp) <span style="color: #333333">?</span> 1 : <span style="color: #333399; font-weight: bold">exp</span>);
+	}
+}
+</pre></div>
+
+
+    <h3>HTML template</h3>
+    <div style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #007700">&lt;div</span> <span style="color: #0000CC">class=</span><span style="background-color: #fff0f0">&quot;form-horizontal&quot;</span><span style="color: #007700">&gt;</span>
+	<span style="color: #007700">&lt;div</span> <span style="color: #0000CC">class=</span><span style="background-color: #fff0f0">&quot;form-group&quot;</span><span style="color: #007700">&gt;</span>
+		<span style="color: #007700">&lt;label</span> <span style="color: #0000CC">class=</span><span style="background-color: #fff0f0">&quot;control-label col-sm-2&quot;</span> <span style="color: #0000CC">for=</span><span style="background-color: #fff0f0">&quot;power&quot;</span><span style="color: #007700">&gt;</span>Power number:<span style="color: #007700">&lt;/label&gt;</span>
+		<span style="color: #007700">&lt;div</span> <span style="color: #0000CC">class=</span><span style="background-color: #fff0f0">&quot;col-sm-10&quot;</span><span style="color: #007700">&gt;</span>
+			<span style="color: #007700">&lt;input</span> <span style="color: #0000CC">type=</span><span style="background-color: #fff0f0">&quot;number&quot;</span> <span style="color: #0000CC">class=</span><span style="background-color: #fff0f0">&quot;form-control&quot;</span> <span style="color: #0000CC">id=</span><span style="background-color: #fff0f0">&quot;power&quot;</span> <span style="color: #FF0000; background-color: #F5F5F5">[(</span><span style="color: #0000CC">ngModel</span><span style="color: #FF0000; background-color: #F5F5F5">)]=&quot;</span><span style="color: #0000CC">power</span><span style="color: #FF0000; background-color: #F5F5F5">&quot;</span><span style="color: #007700">&gt;</span>
+		<span style="color: #007700">&lt;/div&gt;</span>
+	<span style="color: #007700">&lt;/div&gt;</span>
+	<span style="color: #007700">&lt;div</span> <span style="color: #0000CC">class=</span><span style="background-color: #fff0f0">&quot;form-group&quot;</span><span style="color: #007700">&gt;</span>
+		<span style="color: #007700">&lt;label</span> <span style="color: #0000CC">class=</span><span style="background-color: #fff0f0">&quot;control-label col-sm-2&quot;</span> <span style="color: #0000CC">for=</span><span style="background-color: #fff0f0">&quot;factor&quot;</span><span style="color: #007700">&gt;</span>Factor number:<span style="color: #007700">&lt;/label&gt;</span>
+		<span style="color: #007700">&lt;div</span> <span style="color: #0000CC">class=</span><span style="background-color: #fff0f0">&quot;col-sm-10&quot;</span><span style="color: #007700">&gt;</span>
+			<span style="color: #007700">&lt;input</span> <span style="color: #0000CC">type=</span><span style="background-color: #fff0f0">&quot;number&quot;</span> <span style="color: #0000CC">class=</span><span style="background-color: #fff0f0">&quot;form-control&quot;</span> <span style="color: #0000CC">id=</span><span style="background-color: #fff0f0">&quot;factor&quot;</span> <span style="color: #FF0000; background-color: #F5F5F5">[(</span><span style="color: #0000CC">ngModel</span><span style="color: #FF0000; background-color: #F5F5F5">)]=&quot;</span><span style="color: #0000CC">factor</span><span style="color: #FF0000; background-color: #F5F5F5">&quot;</span><span style="color: #007700">&gt;</span>
+		<span style="color: #007700">&lt;/div&gt;</span>
+	<span style="color: #007700">&lt;/div&gt;</span>
+<span style="color: #007700">&lt;/div&gt;</span>
+<span style="color: #888888">&lt;!-- Using our pipe --&gt;</span>
+<span style="color: #007700">&lt;h3&gt;</span>Result: <span ngNonBindable>{{power | pow: factor}}</span><span style="color: #007700">&lt;/h3&gt;</span>
+</pre></div>
+
+
+
 
     <h3>Check out the result</h3>
     <div class="panel panel-default">
         <div class="panel-heading">
-            <h2 class="panel-title">Power example</h2>
+            <h2 class="panel-title">
+                <strong>Power example</strong>
+            </h2>
         </div>
         <div class="panel-body">
             <div class="form-horizontal">

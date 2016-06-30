@@ -1,5 +1,67 @@
 <div class="row">
+    <h2><strong>Bindings demo</strong></h2>
+    <div class="alert alert-info">
+        <strong>Binding types </strong>
+        <ul>
+            <li><code>Interpolation</code></li>
+            <li><code>Property</code></li>
+            <li><code>Attribute</code></li>
+            <li><code>Class</code></li>
+            <li><code>Style</code></li>
+            <li><code>Event</code></li>
+            <li><code>Two way binding</code></li>
+        </ul>
+    </div>
+
     <div class="page-header">
-        <h3>Bindings demo</h3>
+        <h2>One-way from data source to view target</h2>
+    </div>
+    <h4><strong>Syntax</strong></h4>
+    <div style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%" ngNonBindable>{{expression}}
+[target] = &quot;expression&quot;
+bind-target = &quot;expression&quot;</pre></div>
+
+    <h4><strong>Template:</strong></h4>
+    <div style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #007700">&lt;input</span> <span style="color: #0000CC">class=</span><span style="background-color: #fff0f0">&quot;form-control&quot;</span> <span style="color: #0000CC">type=</span><span style="background-color: #fff0f0">&quot;text&quot;</span> <span style="color: #FF0000; background-color: #F5F5F5">[</span><span style="color: #0000CC">value</span><span style="color: #FF0000; background-color: #F5F5F5">]=&quot;</span><span style="color: #0000CC">someProperty</span><span style="color: #FF0000; background-color: #F5F5F5">&quot;</span> <span style="color: #0000CC">placeholder=</span><span style="background-color: #fff0f0">&quot;Property binding [value]=&#39;someProperty&#39;&quot;</span><span style="color: #007700">&gt;&lt;br&gt;</span>
+<span style="color: #007700">&lt;input</span> <span style="color: #0000CC">class=</span><span style="background-color: #fff0f0">&quot;form-control&quot;</span> <span style="color: #0000CC">type=</span><span style="background-color: #fff0f0">&quot;text&quot;</span> <span style="color: #FF0000; background-color: #F5F5F5">[(</span><span style="color: #0000CC">ngModel</span><span style="color: #FF0000; background-color: #F5F5F5">)]=&quot;</span><span style="color: #0000CC">someProperty</span><span style="color: #FF0000; background-color: #F5F5F5">&quot;</span> <span style="color: #0000CC">placeholder=</span><span style="background-color: #fff0f0">&quot;Two way binding&quot;</span><span style="color: #007700">&gt;&lt;br&gt;</span>
+<span style="color: #007700">&lt;strong&gt;</span>someProperty value:<span style="color: #007700">&lt;/strong&gt;</span><span ngNonBindable>{{someProperty}}</span>
+</pre></div>
+
+    <h4><strong>Example</strong></h4>
+    <div class="panel panel-primary">
+        <div class="panel-heading">
+            <span class="panel-title"><strong>Example</strong></span>
+        </div>
+        <div class="panel-body">
+            <input class="form-control" type="text" [value]="someProperty" placeholder="Property binding [value]='someProperty'"><br>
+            <input class="form-control" type="text" [(ngModel)]="someProperty" placeholder="Two way binding"><br>
+            <strong>someProperty value:</strong>{{someProperty}}
+        </div>
+    </div>
+
+    <div class="page-header">
+        <h2>One-way from view target to data source</h2>
+    </div>
+    <h4><strong>Syntax</strong></h4>
+    <div style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%">(target) = &quot;statement&quot;
+on-target = &quot;statement&quot;
+</pre></div>
+
+    <h4><strong>Template: </strong></h4>
+    <div style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #007700">&lt;input</span> <span style="color: #0000CC">class=</span><span style="background-color: #fff0f0">&quot;form-control&quot;</span> <span style="color: #0000CC">type=</span><span style="background-color: #fff0f0">&quot;text&quot;</span> <span style="color: #FF0000; background-color: #F5F5F5">(</span><span style="color: #0000CC">input</span><span style="color: #FF0000; background-color: #F5F5F5">)=&quot;</span><span style="color: #0000CC">someProperty2 =</span><span style="color: #FF0000; background-color: #F5F5F5"> </span><span style="background-color: #fff0f0">$event.target.value&quot;</span> <span style="color: #0000CC">placeholder=</span><span style="background-color: #fff0f0">&quot;Property binding (input)=&#39;someProperty = $event.target.value&#39;&quot;</span><span style="color: #007700">&gt;&lt;br&gt;</span>
+<span style="color: #007700">&lt;input</span> <span style="color: #0000CC">class=</span><span style="background-color: #fff0f0">&quot;form-control&quot;</span> <span style="color: #0000CC">type=</span><span style="background-color: #fff0f0">&quot;text&quot;</span> <span style="color: #FF0000; background-color: #F5F5F5">[(</span><span style="color: #0000CC">ngModel</span><span style="color: #FF0000; background-color: #F5F5F5">)]=&quot;</span><span style="color: #0000CC">someProperty2</span><span style="color: #FF0000; background-color: #F5F5F5">&quot;</span> <span style="color: #0000CC">placeholder=</span><span style="background-color: #fff0f0">&quot;Two way binding&quot;</span><span style="color: #007700">&gt;&lt;br&gt;</span>
+<span style="color: #007700">&lt;strong&gt;</span>someProperty value:<span style="color: #007700">&lt;/strong&gt;</span><span ngNonBindable>{{someProperty2}}</span>
+</pre></div>
+
+    <h4><strong>Example</strong></h4>
+    <div class="panel panel-primary">
+        <div class="panel-heading">
+            <span class="panel-title"><strong>Example</strong></span>
+        </div>
+        <div class="panel-body">
+            <input class="form-control" type="text" (input)="someProperty2 = $event.target.value" placeholder="Property binding (input)='someProperty = $event.target.value'"><br>
+            <input class="form-control" type="text" [(ngModel)]="someProperty2" placeholder="Two way binding"><br>
+            <strong>someProperty value:</strong>{{someProperty2}}
+        </div>
     </div>
 </div>

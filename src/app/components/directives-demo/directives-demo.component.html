@@ -1,0 +1,89 @@
+<div class="row">
+    <h2><strong>Directives demo</strong></h2>
+
+    <div class="alert alert-info">
+        <p>There are three kinds of directives in Angular:</p>
+        <ul>
+            <li>Components</li>
+            <li>Structural directives</li>
+            <li>Attribute directives</li>
+        </ul>
+    </div>
+    <div class="page-header">
+        <h2>Attribute directive</h2>
+    </div>
+    <h3><strong>Code example:</strong></h3>
+    <div style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #008800; font-weight: bold">import</span> { Directive, ElementRef, Input } from <span style="background-color: #fff0f0">&#39;@angular/core&#39;</span>;
+
+<span style="color: #FF0000; background-color: #F5F5F5">@</span>Directive({ selector<span style="color: #333333">:</span> <span style="background-color: #fff0f0">&#39;[yellow]&#39;</span> })
+<span style="color: #008800; font-weight: bold">export</span> <span style="color: #008800; font-weight: bold">class</span> YellowDirective {
+    <span style="color: #008800; font-weight: bold">constructor</span>(el: <span style="color: #333399; font-weight: bold">ElementRef</span>) {
+        el.nativeElement.style.backgroundColor <span style="color: #333333">=</span> <span style="background-color: #fff0f0">&#39;yellow&#39;</span>;
+    }
+}
+    </pre></div>
+
+    <h4><strong>Template</strong></h4>
+    <div style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #007700">&lt;span</span> <span style="color: #0000CC">yellow</span><span style="color: #007700">&gt;&lt;strong&gt;</span>This is very simple example of directive<span style="color: #007700">&lt;/strong&gt;&lt;/span&gt;</span>
+</pre></div>
+
+    <h4><strong>Example</strong></h4>
+    <div class="panel panel-primary">
+        <div class="panel-heading">
+            <span class="panel-title"><strong>Directive example</strong></span>
+        </div>
+        <div class="panel-body">
+            <span yellow><strong>This is very simple example of directive</strong></span>
+        </div>
+    </div>
+
+    <div class="page-header">
+        <h2>Structural directive</h2>
+    </div>
+    <h3><strong>Code example:</strong></h3>
+    <div style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #008800; font-weight: bold">import</span> { Directive, Input } from <span style="background-color: #fff0f0">&#39;@angular/core&#39;</span>;
+<span style="color: #008800; font-weight: bold">import</span> { TemplateRef, ViewContainerRef } from <span style="background-color: #fff0f0">&#39;@angular/core&#39;</span>;
+
+<span style="color: #FF0000; background-color: #F5F5F5">@</span>Directive({ selector<span style="color: #333333">:</span> <span style="background-color: #fff0f0">&#39;[unless]&#39;</span> })
+<span style="color: #008800; font-weight: bold">export</span> <span style="color: #008800; font-weight: bold">class</span> UnlessDirective {
+    <span style="color: #008800; font-weight: bold">constructor</span>(
+        <span style="color: #008800; font-weight: bold">private</span> templateRef: <span style="color: #333399; font-weight: bold">TemplateRef</span><span style="color: #333333">&lt;</span>any<span style="color: #333333">&gt;</span>,
+        <span style="color: #008800; font-weight: bold">private</span> viewContainer: <span style="color: #333399; font-weight: bold">ViewContainerRef</span>
+    ) { }
+    <span style="color: #FF0000; background-color: #F5F5F5">@</span>Input() set myUnless(condition: <span style="color: #333399; font-weight: bold">boolean</span>) {
+        <span style="color: #008800; font-weight: bold">if</span> (<span style="color: #333333">!</span>condition) {
+            <span style="color: #008800; font-weight: bold">this</span>.viewContainer.createEmbeddedView(<span style="color: #008800; font-weight: bold">this</span>.templateRef);
+        } <span style="color: #008800; font-weight: bold">else</span> {
+            <span style="color: #008800; font-weight: bold">this</span>.viewContainer.clear();
+        }
+    }
+}
+</pre></div>
+
+    <h3><strong>Template:</strong></h3>
+    <div style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #007700">&lt;button</span> <span style="color: #0000CC">class=</span><span style="background-color: #fff0f0">&quot;btn btn-success&quot;</span> <span style="color: #FF0000; background-color: #F5F5F5">(</span><span style="color: #0000CC">click</span><span style="color: #FF0000; background-color: #F5F5F5">)=&quot;</span><span style="color: #0000CC">show =</span><span style="color: #FF0000; background-color: #F5F5F5"> </span><span style="background-color: #fff0f0">!show&quot;</span><span style="color: #007700">&gt;</span>Switch<span style="color: #007700">&lt;/button&gt;</span> Current value is: <span style="color: #007700">&lt;strong&gt;</span><span ngNonBindable>{{show}}</span><span style="color: #007700">&lt;/strong&gt;</span>
+<span style="color: #007700">&lt;div</span> <span style="color: #FF0000; background-color: #F5F5F5">*</span><span style="color: #0000CC">myUnless=</span><span style="background-color: #fff0f0">&quot;show&quot;</span><span style="color: #007700">&gt;</span>
+	<span style="color: #007700">&lt;strong&gt;</span>Unless<span style="color: #007700">&lt;/strong&gt;</span> is showing.
+<span style="color: #007700">&lt;/div&gt;</span>
+<span style="color: #007700">&lt;div</span> <span style="color: #FF0000; background-color: #F5F5F5">*</span><span style="color: #0000CC">ngIf=</span><span style="background-color: #fff0f0">&quot;show&quot;</span><span style="color: #007700">&gt;</span>
+	<span style="color: #007700">&lt;strong&gt;</span>If<span style="color: #007700">&lt;/strong&gt;</span> is showing.
+<span style="color: #007700">&lt;/div&gt;</span>
+</pre></div>
+
+
+    <h3><strong>Example:</strong></h3>
+    <div class="panel panel-primary">
+        <div class="panel-heading">
+            <span class="panel-title"><strong>Directive example</strong></span>
+        </div>
+        <div class="panel-body">
+            <button class="btn btn-success" (click)="show = !show">Switch</button> Current value is: <strong>{{show}}</strong>
+            <div *myUnless="show">
+                <strong>Unless</strong> is showing.
+            </div>
+            <div *ngIf="show">
+                <strong>If</strong> is showing.
+            </div>
+        </div>
+    </div>
+</div>

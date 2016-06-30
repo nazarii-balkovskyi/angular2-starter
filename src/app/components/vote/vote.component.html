@@ -1,0 +1,9 @@
+<div class="panel panel-primary col-md-3">
+    <div class="panel-heading">
+        {{_voterName}} <span [hidden]="!done"><strong>{{voteResult}}</strong></span>
+    </div>
+    <div class="panel-body">
+        <button class="btn btn-success btn-sm" (click)="vote(true)" [disabled]="done">Yes</button>
+        <button class="btn btn-danger btn-sm" (click)="vote(false)" [disabled]="done">No</button>
+    </div>
+</div>
