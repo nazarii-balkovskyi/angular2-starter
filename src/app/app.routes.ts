@@ -5,6 +5,7 @@ import {BindingsDemoRoutes} from "./components/bindings-demo/bindings-demo.route
 import {PipesDemoRoutes} from "./components/pipes-demo/pipes-demo.routes";
 import {LiveCodingRoutes} from "./components/live-codding/live-coding.routes";
 import {DirectivesDemoRoutes} from "./components/directives-demo/directives-demo.routes";
+import {RoutingDemoRoutes} from "./components/routing-demo/routing-demo.routes";
 
 export const routes: RouterConfig = [
     ...ComponentsDemoRoutes,
@@ -12,7 +13,8 @@ export const routes: RouterConfig = [
     ...ServiceDemoRoutes,
     ...PipesDemoRoutes,
     ...LiveCodingRoutes,
-    ...DirectivesDemoRoutes
+    ...DirectivesDemoRoutes,
+    ...RoutingDemoRoutes
 ];
 
 export const APP_ROUTER_PROVIDERS = [
