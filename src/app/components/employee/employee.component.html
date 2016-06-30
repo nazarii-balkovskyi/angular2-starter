@@ -1,0 +1,18 @@
+<div class="row">
+    <div class="alert alert-success">
+        <div class="row">
+            <div class="col-md-2">
+                <img src="/public/img/user.png" width="120" height="120"/>
+            </div>
+            <div class="col-md-8">
+                <p><strong>First name</strong>: {{employee.firstName}}</p><br>
+                <p><strong>Last name</strong>: {{employee.lastName}}</p><br>
+                <p><strong>Age</strong>: {{employee.age}}</p>
+            </div>
+            <div class="col-md-2">
+                <button class="btn btn-warning btn-sm" (click)="editEvent()"><span class="glyphicon glyphicon-edit" >Edit</span></button>
+                <button class="btn btn-danger btn-sm" (click)="deleteEvent()"><span class="glyphicon glyphicon-remove" >Delete</span></button>
+            </div>
+        </div>
+    </div>
+</div>

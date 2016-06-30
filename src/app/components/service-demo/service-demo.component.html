@@ -2,6 +2,97 @@
     <h2><strong>Services demo</strong></h2>
     <div class="alert alert-info">
         Service can be any class defined with @Injectable decorator
+        <ul>
+            <li>Scope of service instance can be set by using providers options</li>
+        </ul>
+    </div>
+
+    <div class="page-header">
+        <h2>Very simple CRUD example</h2>
+    </div>
+    <h3><strong>Code example:</strong></h3>
+    <div style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #008800; font-weight: bold">import</span> {Employee} from <span style="background-color: #fff0f0">&quot;../model/employee&quot;</span>;
+<span style="color: #008800; font-weight: bold">import</span> {Injectable} from <span style="background-color: #fff0f0">&quot;@angular/core&quot;</span>;
+
+<span style="color: #FF0000; background-color: #F5F5F5">@</span>Injectable()
+<span style="color: #008800; font-weight: bold">export</span> <span style="color: #008800; font-weight: bold">class</span> EmployeeService {
+    <span style="color: #008800; font-weight: bold">private</span> _employees: <span style="color: #333399; font-weight: bold">Array</span><span style="color: #333333">&lt;</span>Employee<span style="color: #333333">&gt;</span> <span style="color: #333333">=</span> [
+        {firstName<span style="color: #333333">:</span> <span style="background-color: #fff0f0">&#39;Nazarii&#39;</span>, lastName<span style="color: #333333">:</span> <span style="background-color: #fff0f0">&#39;Balkovskyi&#39;</span>, age: <span style="color: #333399; font-weight: bold">23</span>, id: <span style="color: #333399; font-weight: bold">1</span>}
+    ];
+
+    <span style="color: #008800; font-weight: bold">public</span> getEmployees()<span style="color: #333333">:</span> <span style="color: #007020">Array</span><span style="color: #333333">&lt;</span>Employee<span style="color: #333333">&gt;</span> {
+        <span style="color: #008800; font-weight: bold">return</span> <span style="color: #008800; font-weight: bold">this</span>._employees;
+    }
+
+    <span style="color: #008800; font-weight: bold">public</span> addEmployee(firstName: <span style="color: #333399; font-weight: bold">string</span>, lastName: <span style="color: #333399; font-weight: bold">string</span>, age: <span style="color: #333399; font-weight: bold">number</span>)<span style="color: #333333">:</span> Employee {
+        <span style="color: #008800; font-weight: bold">let</span> employee <span style="color: #333333">=</span> <span style="color: #008800; font-weight: bold">new</span> Employee(firstName, lastName, age);
+        employee.id <span style="color: #333333">=</span> <span style="color: #008800; font-weight: bold">this</span>._employees[<span style="color: #008800; font-weight: bold">this</span>._employees.length <span style="color: #333333">-</span><span style="color: #0000DD; font-weight: bold">1</span>].id <span style="color: #333333">+</span> <span style="color: #0000DD; font-weight: bold">1</span>;
+        <span style="color: #008800; font-weight: bold">this</span>._employees.push(employee);
+        <span style="color: #008800; font-weight: bold">return</span> employee;
+    }
+
+    <span style="color: #008800; font-weight: bold">public</span> removeEmployee(employee: <span style="color: #333399; font-weight: bold">Employee</span>) {
+        <span style="color: #008800; font-weight: bold">for</span>(<span style="color: #008800; font-weight: bold">let</span> i <span style="color: #333333">=</span> <span style="color: #0000DD; font-weight: bold">0</span>; i <span style="color: #333333">&lt;</span> <span style="color: #008800; font-weight: bold">this</span>._employees.length; i<span style="color: #333333">++</span>) {
+            <span style="color: #008800; font-weight: bold">if</span>(employee.id <span style="color: #333333">==</span> <span style="color: #008800; font-weight: bold">this</span>._employees[i].id) {
+                <span style="color: #008800; font-weight: bold">this</span>._employees.splice(i, <span style="color: #0000DD; font-weight: bold">1</span>);
+            }
+        }
+    }
+
+    <span style="color: #008800; font-weight: bold">public</span> saveEmployee(employee: <span style="color: #333399; font-weight: bold">Employee</span>) {
+        <span style="color: #008800; font-weight: bold">for</span>(<span style="color: #008800; font-weight: bold">let</span> i <span style="color: #333333">=</span> <span style="color: #0000DD; font-weight: bold">0</span>; i <span style="color: #333333">&lt;</span> <span style="color: #008800; font-weight: bold">this</span>._employees.length; i<span style="color: #333333">++</span>) {
+            <span style="color: #008800; font-weight: bold">if</span>(employee.id <span style="color: #333333">==</span> <span style="color: #008800; font-weight: bold">this</span>._employees[i].id) {
+                <span style="color: #008800; font-weight: bold">this</span>._employees[i] <span style="color: #333333">=</span> employee;
+            }
+        }
+    }
+}
+</pre></div>
+
+    <h3><strong>Template example:</strong></h3>
+    <div style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;"><pre style="margin: 0; line-height: 125%"><span style="color: #007700">&lt;div</span> <span style="color: #0000CC">class=</span><span style="background-color: #fff0f0">&quot;row&quot;</span><span style="color: #007700">&gt;</span>
+    <span style="color: #007700">&lt;form</span> <span style="color: #0000CC">class=</span><span style="background-color: #fff0f0">&quot;form-horizontal&quot;</span><span style="color: #007700">&gt;</span>
+        <span style="color: #007700">&lt;div</span> <span style="color: #0000CC">class=</span><span style="background-color: #fff0f0">&quot;form-group&quot;</span><span style="color: #007700">&gt;</span>
+            <span style="color: #007700">&lt;label</span> <span style="color: #0000CC">class=</span><span style="background-color: #fff0f0">&quot;control-label col-sm-2&quot;</span> <span style="color: #0000CC">for=</span><span style="background-color: #fff0f0">&quot;firstName&quot;</span><span style="color: #007700">&gt;</span>First name:<span style="color: #007700">&lt;/label&gt;</span>
+            <span style="color: #007700">&lt;div</span> <span style="color: #0000CC">class=</span><span style="background-color: #fff0f0">&quot;col-sm-10&quot;</span><span style="color: #007700">&gt;</span>
+                <span style="color: #007700">&lt;input</span> <span style="color: #0000CC">type=</span><span style="background-color: #fff0f0">&quot;text&quot;</span> <span style="color: #0000CC">class=</span><span style="background-color: #fff0f0">&quot;form-control&quot;</span> <span style="color: #0000CC">id=</span><span style="background-color: #fff0f0">&quot;firstName&quot;</span> <span style="color: #FF0000; background-color: #F5F5F5">[(</span><span style="color: #0000CC">ngModel</span><span style="color: #FF0000; background-color: #F5F5F5">)]=&quot;</span><span style="color: #0000CC">currentEmployee</span><span style="color: #FF0000; background-color: #F5F5F5">.</span><span style="color: #0000CC">firstName</span><span style="color: #FF0000; background-color: #F5F5F5">&quot;</span>
+                       <span style="color: #0000CC">placeholder=</span><span style="background-color: #fff0f0">&quot;First name&quot;</span><span style="color: #007700">&gt;</span>
+            <span style="color: #007700">&lt;/div&gt;</span>
+        <span style="color: #007700">&lt;/div&gt;</span>
+        <span style="color: #007700">&lt;div</span> <span style="color: #0000CC">class=</span><span style="background-color: #fff0f0">&quot;form-group&quot;</span><span style="color: #007700">&gt;</span>
+            <span style="color: #007700">&lt;label</span> <span style="color: #0000CC">class=</span><span style="background-color: #fff0f0">&quot;control-label col-sm-2&quot;</span> <span style="color: #0000CC">for=</span><span style="background-color: #fff0f0">&quot;lastName&quot;</span><span style="color: #007700">&gt;</span>Last name:<span style="color: #007700">&lt;/label&gt;</span>
+            <span style="color: #007700">&lt;div</span> <span style="color: #0000CC">class=</span><span style="background-color: #fff0f0">&quot;col-sm-10&quot;</span><span style="color: #007700">&gt;</span>
+                <span style="color: #007700">&lt;input</span> <span style="color: #0000CC">type=</span><span style="background-color: #fff0f0">&quot;text&quot;</span> <span style="color: #0000CC">class=</span><span style="background-color: #fff0f0">&quot;form-control&quot;</span> <span style="color: #0000CC">id=</span><span style="background-color: #fff0f0">&quot;lastName&quot;</span> <span style="color: #FF0000; background-color: #F5F5F5">[(</span><span style="color: #0000CC">ngModel</span><span style="color: #FF0000; background-color: #F5F5F5">)]=&quot;</span><span style="color: #0000CC">currentEmployee</span><span style="color: #FF0000; background-color: #F5F5F5">.</span><span style="color: #0000CC">lastName</span><span style="color: #FF0000; background-color: #F5F5F5">&quot;</span>
+                       <span style="color: #0000CC">placeholder=</span><span style="background-color: #fff0f0">&quot;Last name&quot;</span><span style="color: #007700">&gt;</span>
+            <span style="color: #007700">&lt;/div&gt;</span>
+        <span style="color: #007700">&lt;/div&gt;</span>
+        <span style="color: #007700">&lt;div</span> <span style="color: #0000CC">class=</span><span style="background-color: #fff0f0">&quot;form-group&quot;</span><span style="color: #007700">&gt;</span>
+            <span style="color: #007700">&lt;label</span> <span style="color: #0000CC">class=</span><span style="background-color: #fff0f0">&quot;control-label col-sm-2&quot;</span> <span style="color: #0000CC">for=</span><span style="background-color: #fff0f0">&quot;age&quot;</span><span style="color: #007700">&gt;</span>Age:<span style="color: #007700">&lt;/label&gt;</span>
+            <span style="color: #007700">&lt;div</span> <span style="color: #0000CC">class=</span><span style="background-color: #fff0f0">&quot;col-sm-10&quot;</span><span style="color: #007700">&gt;</span>
+                <span style="color: #007700">&lt;input</span> <span style="color: #0000CC">type=</span><span style="background-color: #fff0f0">&quot;number&quot;</span> <span style="color: #0000CC">class=</span><span style="background-color: #fff0f0">&quot;form-control&quot;</span> <span style="color: #0000CC">id=</span><span style="background-color: #fff0f0">&quot;age&quot;</span> <span style="color: #FF0000; background-color: #F5F5F5">[(</span><span style="color: #0000CC">ngModel</span><span style="color: #FF0000; background-color: #F5F5F5">)]=&quot;</span><span style="color: #0000CC">currentEmployee</span><span style="color: #FF0000; background-color: #F5F5F5">.</span><span style="color: #0000CC">age</span><span style="color: #FF0000; background-color: #F5F5F5">&quot;</span> <span style="color: #0000CC">placeholder=</span><span style="background-color: #fff0f0">&quot;Age&quot;</span><span style="color: #007700">&gt;</span>
+            <span style="color: #007700">&lt;/div&gt;</span>
+        <span style="color: #007700">&lt;/div&gt;</span>
+        <span style="color: #007700">&lt;button</span> <span style="color: #0000CC">role=</span><span style="background-color: #fff0f0">&quot;button&quot;</span> <span style="color: #FF0000; background-color: #F5F5F5">[</span><span style="color: #0000CC">class</span><span style="color: #FF0000; background-color: #F5F5F5">.</span><span style="color: #0000CC">btn-success</span><span style="color: #FF0000; background-color: #F5F5F5">]=&quot;!</span><span style="color: #0000CC">editing</span><span style="color: #FF0000; background-color: #F5F5F5">&quot;</span> <span style="color: #FF0000; background-color: #F5F5F5">[</span><span style="color: #0000CC">class</span><span style="color: #FF0000; background-color: #F5F5F5">.</span><span style="color: #0000CC">btn-warning</span><span style="color: #FF0000; background-color: #F5F5F5">]=&quot;</span><span style="color: #0000CC">editing</span><span style="color: #FF0000; background-color: #F5F5F5">&quot;</span> <span style="color: #0000CC">class=</span><span style="background-color: #fff0f0">&quot;btn pull-right&quot;</span> <span style="color: #FF0000; background-color: #F5F5F5">(</span><span style="color: #0000CC">click</span><span style="color: #FF0000; background-color: #F5F5F5">)=&quot;</span><span style="color: #0000CC">add</span><span style="color: #FF0000; background-color: #F5F5F5">()&quot;</span><span style="color: #007700">&gt;</span>
+            <span style="color: #007700">&lt;span</span> <span style="color: #FF0000; background-color: #F5F5F5">*</span><span style="color: #0000CC">ngIf=</span><span style="background-color: #fff0f0">&quot;!editing&quot;</span><span style="color: #007700">&gt;</span>Add<span style="color: #007700">&lt;/span&gt;</span> <span style="color: #007700">&lt;span</span> <span style="color: #FF0000; background-color: #F5F5F5">*</span><span style="color: #0000CC">ngIf=</span><span style="background-color: #fff0f0">&quot;editing&quot;</span><span style="color: #007700">&gt;</span>Edit<span style="color: #007700">&lt;/span&gt;</span> employee
+        <span style="color: #007700">&lt;/button&gt;</span>
+        <span style="color: #007700">&lt;button</span> <span style="color: #0000CC">role=</span><span style="background-color: #fff0f0">&quot;button&quot;</span> <span style="color: #FF0000; background-color: #F5F5F5">*</span><span style="color: #0000CC">ngIf=</span><span style="background-color: #fff0f0">&quot;editing&quot;</span> <span style="color: #0000CC">class=</span><span style="background-color: #fff0f0">&quot;btn btn-danger pull-right&quot;</span> <span style="color: #FF0000; background-color: #F5F5F5">(</span><span style="color: #0000CC">click</span><span style="color: #FF0000; background-color: #F5F5F5">)=&quot;</span><span style="color: #0000CC">cancel</span><span style="color: #FF0000; background-color: #F5F5F5">()&quot;</span><span style="color: #007700">&gt;</span>
+            Cancel
+        <span style="color: #007700">&lt;/button&gt;</span>
+    <span style="color: #007700">&lt;/form&gt;</span>
+<span style="color: #007700">&lt;/div&gt;</span>
+<span style="color: #007700">&lt;div</span> <span style="color: #0000CC">class=</span><span style="background-color: #fff0f0">&quot;row&quot;</span><span style="color: #007700">&gt;</span>
+    <span style="color: #007700">&lt;div</span> <span style="color: #FF0000; background-color: #F5F5F5">*</span><span style="color: #0000CC">ngFor=</span><span style="background-color: #fff0f0">&quot;let empl of employees&quot;</span> <span style="color: #0000CC">class=</span><span style="background-color: #fff0f0">&quot;col-md-8 col-md-offset-2&quot;</span><span style="color: #007700">&gt;</span>
+        <span style="color: #007700">&lt;employee</span>  <span style="color: #FF0000; background-color: #F5F5F5">[</span><span style="color: #0000CC">employee</span><span style="color: #FF0000; background-color: #F5F5F5">]=&quot;</span><span style="color: #0000CC">empl</span><span style="color: #FF0000; background-color: #F5F5F5">&quot;</span> <span style="color: #FF0000; background-color: #F5F5F5">(</span><span style="color: #0000CC">delete</span><span style="color: #FF0000; background-color: #F5F5F5">)=&quot;</span><span style="color: #0000CC">delete</span><span style="color: #FF0000; background-color: #F5F5F5">($</span><span style="color: #0000CC">event</span><span style="color: #FF0000; background-color: #F5F5F5">)&quot;</span> <span style="color: #FF0000; background-color: #F5F5F5">(</span><span style="color: #0000CC">edit</span><span style="color: #FF0000; background-color: #F5F5F5">)=&quot;</span><span style="color: #0000CC">edit</span><span style="color: #FF0000; background-color: #F5F5F5">($</span><span style="color: #0000CC">event</span><span style="color: #FF0000; background-color: #F5F5F5">)&quot;</span><span style="color: #007700">&gt;&lt;/employee&gt;</span>
+    <span style="color: #007700">&lt;/div&gt;</span>
+<span style="color: #007700">&lt;/div&gt;</span>
+</pre></div>
+
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            Employees example
+        </div>
+        <div class="panel-body">
+            <router-outlet></router-outlet>
+        </div>
     </div>
 </div>
-<router-outlet></router-outlet>
