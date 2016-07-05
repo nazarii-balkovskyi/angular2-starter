@@ -22,6 +22,7 @@ module.exports = webpackMerge(commonConfig, {
     ],
     devServer: {
         // historyApiFallback: true,
+        contentBase: '.',
         stats: 'minimal',
         port: SERVER_PORT,
         outputPath: helpers.root('dist')
