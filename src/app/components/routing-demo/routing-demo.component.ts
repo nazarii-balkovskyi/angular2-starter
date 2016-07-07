@@ -5,5 +5,5 @@ import {Component} from "@angular/core";
     template: require('./routing-demo.component.html')
 })
 export class RoutingDemoComponent {
-
+    
 }
