@@ -1,5 +1,4 @@
-import {Component, Input, Output, EventEmitter, OnInit} from '@angular/core';
-import {UpdateEventObject} from "../../model/UpdateEventObject";
+import {Component, OnInit} from "@angular/core";
 import {VoteComponent} from "../vote/vote.component";
 
 @Component({

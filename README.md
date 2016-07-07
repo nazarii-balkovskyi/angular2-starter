@@ -50,6 +50,11 @@ angular2-webpack-starter/
  |   ├──vendor.ts              * vendor file
  │   │
  │   ├──app/                   * WebApp: folder
+ │        ├──components/       * Compnents folder
+ │        ├──services/          * Services folder
+ │        ├──directves/         * Directives folder
+ │        ├──pipes/             * Pipes folder
+ │   │
  │   │   ├──app.routess.ts     * routings for our application
  │   │   ├──app.component.html * html template for our application
  │   │   └──app.component.ts   * App.ts: a simple version of our App component components

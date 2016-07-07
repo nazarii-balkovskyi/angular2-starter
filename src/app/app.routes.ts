@@ -14,7 +14,12 @@ export const routes: RouterConfig = [
     ...PipesDemoRoutes,
     ...LiveCodingRoutes,
     ...DirectivesDemoRoutes,
-    ...RoutingDemoRoutes
+    ...RoutingDemoRoutes,
+    {
+        path: '',
+        redirectTo: 'components-demo',
+        terminal: true
+    }
 ];
 
 export const APP_ROUTER_PROVIDERS = [
